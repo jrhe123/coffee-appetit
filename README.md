@@ -42,4 +42,7 @@ LLMs + Python + RunPod + Hugging Face + React Native
     - Keep the settings as default
     - Worker Configuration: 24GB GPU PRO
     - Max Worker: 1
-    
+
+4. Recommendation Model
+    - "what goes well with which order"
+    - https://www.kaggle.com/datasets/ylchang/coffee-shop-sample-data-1113
