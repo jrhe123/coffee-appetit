@@ -35,5 +35,11 @@ LLMs + Python + RunPod + Hugging Face + React Native
         - OPENAI_BASE_URL: https://api.runpod.ai/v2/vllm-0k6mmyup3gpvws/openai/v1
         - RUNSYNC: https://api.runpod.ai/v2/vllm-0k6mmyup3gpvws/runsync
 
-3. 
+3. Embedding Model
+    - BAA/bge-small-env-v1.5
+        - https://huggingface.co/BAAI/bge-small-en-v1.5
+    - Go to RunPod, click "Infinity Vector Embeddings"
+    - Keep the settings as default
+    - Worker Configuration: 24GB GPU PRO
+    - Max Worker: 1
     
