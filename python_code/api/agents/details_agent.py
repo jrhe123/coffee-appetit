@@ -17,12 +17,14 @@ class DetailsAgent():
             api_key=os.getenv("OPENAI_API_KEY"), 
         )
         self.model_name = os.getenv("OPENAI_MODEL_NAME")
+        self.embedding_model_name = os.getenv("OPENAI_EMBEDDING_MODEL_NAME")
+
+        # pinecone
         self.pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
         self.index_name = os.getenv("PINECONE_INDEX_NAME")
     
     def get_closest_results(self,index_name,input_embeddings,top_k=2):
         index = self.pc.Index(index_name)
-        
         results = index.query(
             namespace="ns1",
             vector=input_embeddings,
@@ -30,14 +32,17 @@ class DetailsAgent():
             include_values=False,
             include_metadata=True
         )
-
         return results
 
     def get_response(self,messages):
         messages = deepcopy(messages)
 
         user_message = messages[-1]['content']
-        embedding = get_embedding(self.embedding_client,self.model_name,user_message)[0]
+        embedding = get_embedding(
+            self.embedding_client,
+            self.embedding_model_name,
+            user_message
+        )[0]
         result = self.get_closest_results(self.index_name,embedding)
         source_knowledge = "\n".join([x['metadata']['text'].strip()+'\n' for x in result['matches'] ])
 
@@ -50,7 +55,10 @@ class DetailsAgent():
         Query: {user_message}
         """
 
-        system_prompt = """ You are a customer support agent for a coffee shop called Merry's way. You should answer every question as if you are waiter and provide the neccessary information to the user regarding their orders """
+        system_prompt = """
+            You are a customer support agent for a coffee shop called Merry's way.
+            You should answer every question as if you are waiter and provide the neccessary information to the user regarding their orders
+        """
         messages[-1]['content'] = prompt
         input_messages = [{"role": "system", "content": system_prompt}] + messages[-3:]
 

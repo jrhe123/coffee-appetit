@@ -13,9 +13,9 @@ class ClassificationAgent():
         self.client = OpenAI(
             api_key=os.getenv("OPENAI_API_KEY"),
         )
-        self.model_name = os.getenv("OPENAI_EMBEDDING_MODEL_NAME")
-    
-    def get_response(self,messages):
+        self.model_name = os.getenv("OPENAI_MODEL_NAME")
+
+    def get_response(self, messages):
         messages = deepcopy(messages)
 
         system_prompt = """
@@ -36,16 +36,19 @@ class ClassificationAgent():
         input_messages = [
             {"role": "system", "content": system_prompt},
         ]
-
+        # keep the last 3 messages
         input_messages += messages[-3:]
 
-        chatbot_output = get_chatbot_response(self.client,self.model_name,input_messages)
+        chatbot_output = get_chatbot_response(
+            self.client,
+            self.model_name,
+            input_messages
+        )
         output = self.postprocess(chatbot_output)
         return output
 
-    def postprocess(self,output):
+    def postprocess(self, output):
         output = json.loads(output)
-
         dict_output = {
             "role": "assistant",
             "content": output['message'],
@@ -55,5 +58,3 @@ class ClassificationAgent():
             }
         }
         return dict_output
-
-    

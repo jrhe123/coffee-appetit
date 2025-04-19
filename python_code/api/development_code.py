@@ -1,18 +1,20 @@
-from agents import (GuardAgent,
-                    ClassificationAgent,
-                    DetailsAgent,
-                    OrderTakingAgent,
-                    RecommendationAgent,
-                    AgentProtocol
-                    )
+from agents import (
+    GuardAgent,
+    ClassificationAgent,
+    DetailsAgent,
+    OrderTakingAgent,
+    RecommendationAgent,
+    AgentProtocol
+)
 import os
 
 def main():
     guard_agent = GuardAgent()
     classification_agent = ClassificationAgent()
-    recommendation_agent = RecommendationAgent('recommendation_objects/apriori_recommendations.json',
-                                                    'recommendation_objects/popularity_recommendation.csv'
-                                                    )
+    recommendation_agent = RecommendationAgent(
+        'recommendation_objects/apriori_recommendations.json',
+        'recommendation_objects/popularity_recommendation.csv',
+    )
     agent_dict: dict[str, AgentProtocol] = {
         "details_agent": DetailsAgent(),
         "order_taking_agent": OrderTakingAgent(recommendation_agent),
@@ -37,7 +39,7 @@ def main():
         if guard_agent_response["memory"]["guard_decision"] == "not allowed":
             messages.append(guard_agent_response)
             continue
-        
+
         # Get ClassificationAgent's response
         classification_agent_response = classification_agent.get_response(messages)
         chosen_agent=classification_agent_response["memory"]["classification_decision"]
@@ -49,8 +51,6 @@ def main():
         
         messages.append(response)
 
-        
-        
 
 if __name__ == "__main__":
     main()

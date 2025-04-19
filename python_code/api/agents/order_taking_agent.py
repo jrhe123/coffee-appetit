@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 class OrderTakingAgent():
     def __init__(self, recommendation_agent):
         self.client = OpenAI(
@@ -16,7 +15,7 @@ class OrderTakingAgent():
         )
         self.model_name = os.getenv("OPENAI_MODEL_NAME")
         self.recommendation_agent = recommendation_agent
-    
+
     def get_response(self,messages):
         messages = deepcopy(messages)
         system_prompt = """
@@ -49,7 +48,6 @@ class OrderTakingAgent():
             * Don't tell the user to go to the counter
             * Don't tell the user to go to place to get the order
 
-
             You're task is as follows:
             1. Take the User's Order
             2. Validate that all their items are in the menu
@@ -80,7 +78,6 @@ class OrderTakingAgent():
         asked_recommendation_before = False
         for message_index in range(len(messages)-1,0,-1):
             message = messages[message_index]
-            
             agent_name = message.get("memory",{}).get("agent","")
             if message["role"] == "assistant" and agent_name == "order_taking_agent":
                 step_number = message["memory"]["step number"]
@@ -93,14 +90,11 @@ class OrderTakingAgent():
                 break
 
         messages[-1]['content'] = last_order_taking_status + " \n "+ messages[-1]['content']
-
         input_messages = [{"role": "system", "content": system_prompt}] + messages        
-
         chatbot_output = get_chatbot_response(self.client,self.model_name,input_messages)
 
         # double check json 
         chatbot_output = double_check_json_output(self.client,self.model_name,chatbot_output)
-
         output = self.postprocess(chatbot_output,messages,asked_recommendation_before)
 
         return output
@@ -127,6 +121,4 @@ class OrderTakingAgent():
                 "asked_recommendation_before": asked_recommendation_before
             }
         }
-
-        
         return dict_output

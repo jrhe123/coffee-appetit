@@ -15,7 +15,7 @@ class GuardAgent():
         )
         self.model_name = os.getenv("OPENAI_MODEL_NAME")
 
-    def get_response(self,messages):
+    def get_response(self, messages):
         messages = deepcopy(messages)
 
         system_prompt = """
@@ -38,15 +38,14 @@ class GuardAgent():
             "message": leave the message empty if it's allowed, otherwise write "Sorry, I can't help with that. Can I help you with your order?"
             }
             """
-        
-        input_messages = [{"role": "system", "content": system_prompt}] + messages[-3:]
 
+        input_messages = [{"role": "system", "content": system_prompt}] + messages[-3:]
         chatbot_output = get_chatbot_response(self.client,self.model_name,input_messages)
         output = self.postprocess(chatbot_output)
-        
+
         return output
 
-    def postprocess(self,output):
+    def postprocess(self, output):
         output = json.loads(output)
 
         dict_output = {
