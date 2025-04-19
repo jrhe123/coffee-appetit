@@ -67,3 +67,37 @@ LLMs + Python + RunPod + Hugging Face + React Native
 7. Pinecone
     - create an index
     - create api key
+
+8. React Native
+    - Setup project
+        - node version: 22.14.0
+        - npx create-expo-app@latest
+        - npx expo start --tunnel
+        - npm run reset-project
+        - npx expo start --clear
+
+    - Debug
+        - React Native Orbit
+        - Expo GO 51
+        - Command + D
+        - Command + Shift + K (screenshot)
+
+    - NativeWind CSS
+        - https://www.nativewind.dev/getting-started/installation
+
+9. Release APP
+    - Developer Account $99
+        - https://developer.apple.com
+    - EAS
+        - npm install -g eas-cli
+        - eas login
+        - eas build:configure
+            - `eas.json` generated
+        - eas build -p ios --profile production
+            - download the ipa file
+    - Upload to App Store
+        - Transporter App
+        - upload the ipa file
+    - App Store Connect
+        - https://appstoreconnect.apple.com
+
