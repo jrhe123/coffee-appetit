@@ -60,4 +60,6 @@ LLMs + Python + RunPod + Hugging Face + React Native
                 - add firebase to your `web app`
                 - register your app
         - database: Realtime Database
+            - test mode: on
         - storage: Firebase Storage
+            - test mode: on
