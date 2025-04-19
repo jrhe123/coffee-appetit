@@ -1,7 +1,7 @@
 # coffee-appetit
 LLMs + Python + RunPod + Hugging Face + React Native
 
-<img width="275" alt="Screenshot 2025-04-19 at 15 02 15" src="https://github.com/user-attachments/assets/df328c1a-e340-422d-b94a-8826645c1518" />
+<img width="450" alt="Screenshot 2024-05-08 at 10 23 59 AM" src="https://github.com/user-attachments/assets/df328c1a-e340-422d-b94a-8826645c1518">
 
 ### Prerequisite
 
