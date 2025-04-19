@@ -63,3 +63,7 @@ LLMs + Python + RunPod + Hugging Face + React Native
             - test mode: on
         - storage: Firebase Storage
             - test mode: on
+
+7. Pinecone
+    - create an index
+    - create api key
