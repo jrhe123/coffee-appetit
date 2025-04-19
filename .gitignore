@@ -60,3 +60,10 @@ coverage.xml
 build/
 dist/
 *.egg-info/
+
+*.webp
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
