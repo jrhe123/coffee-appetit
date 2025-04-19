@@ -1,0 +1,12 @@
+pandas==2.2.3
+python-dotenv==1.0.1
+openai==1.75.0
+httpx==0.28.1
+
+numpy==2.2.4
+scikit-learn==1.6.1
+
+pinecone==6.0.2
+firebase-admin==6.7.0
+google-cloud-storage==3.1.0
+mlxtend==0.23.4 # for recommendation ml
