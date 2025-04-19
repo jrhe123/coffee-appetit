@@ -46,3 +46,18 @@ LLMs + Python + RunPod + Hugging Face + React Native
 4. Recommendation Model
     - "what goes well with which order"
     - https://www.kaggle.com/datasets/ylchang/coffee-shop-sample-data-1113
+    - pip install mlxtend
+        - apriori recommendation model
+
+6. Firebase
+    - account: <your account>@gmail.com
+    - new project: coffee-appetit
+        - project settings:
+            - service account:
+                - select language `python`
+                - generate new private key
+            - setup react native app:
+                - add firebase to your `web app`
+                - register your app
+        - database: Realtime Database
+        - storage: Firebase Storage
