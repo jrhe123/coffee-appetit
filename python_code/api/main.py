@@ -12,9 +12,39 @@ class Message(BaseModel):
 class InputBody(BaseModel):
     messages: list[Message]
 
+"""
+http://127.0.0.1:8000/run
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": "can i have a latte?"
+        }
+    ]
+}
+
+response:
+{
+    "role": "assistant",
+    "content": "I recommend adding Sugar Free Vanilla syrup or Caramel syrup to your latte order. Additionally, you may enjoy a Croissant or a Chocolate Croissant to accompany your drink. Enjoy!",
+    "memory": {
+        "agent": "order_taking_agent",
+        "step number": "1",
+        "order": [
+            {
+                "item": "Latte",
+                "quantity": "1",
+                "price": "$4.75"
+            }
+        ],
+        "asked_recommendation_before": true
+    }
+}
+"""
+
 @app.post("/run")
 async def run_agent(input_body: InputBody):
-    input_data = {"input": input_body.dict()}
+    input_data = {"input": input_body.model_dump()}
     response = agent_controller.get_response(input_data)
     return response
 
