@@ -142,3 +142,5 @@ debug.keystore
 # Firebase / Google Service Config
 android/app/google-services.json
 ios/GoogleService-Info.plist
+
+source.md

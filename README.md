@@ -101,3 +101,7 @@ LLMs + Python + RunPod + Hugging Face + React Native
     - App Store Connect
         - https://appstoreconnect.apple.com
 
+10. Reference
+    - Video:
+        - https://www.youtube.com/watch?v=KyQKTJhSIak
+        - https://github.com/abdullahtarek/coffee_shop_customer_service_chatbot/tree/main
